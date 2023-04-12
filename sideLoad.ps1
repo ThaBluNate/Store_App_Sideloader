@@ -12,7 +12,7 @@ $cwd=$cwd-split"\n"
 
 #Elevate if required
 if (-Not(New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){
-    $CommandLine="-NoLogo -Command `"Set-Location "+$cwd[3]+";./Sideload`""
+    $CommandLine="-NoLogo -ExecutionPolicy Bypass -Command `"Set-Location "+$cwd[3]+";./Sideload`""
     Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList $CommandLine
     Exit
 }
