@@ -17,14 +17,12 @@ if (-Not(New-Object Security.Principal.WindowsPrincipal([Security.Principal.Wind
     Exit
 }
 
-if (-Not(Test-Path -Path 7za.exe -PathType Leaf)){
-    "Getting 7za"
-    Invoke-WebRequest -URI "https://7-zip.org/a/7zr.exe" -OutFile "z.exe"
-    Invoke-WebRequest -URI "https://7-zip.org/a/7z2201-extra.7z" -OutFile "z.7z"
-    ./z e z.7z -o"." -y 7za.exe|Out-Null
-    Remove-Item z.exe
-    Remove-Item z.7z    
-}
+"Getting 7za"
+Invoke-WebRequest -URI "https://7-zip.org/a/7zr.exe" -OutFile "z.exe"
+Invoke-WebRequest -URI "https://7-zip.org/a/7z2201-extra.7z" -OutFile "z.7z"
+./z e z.7z -o"." -y 7za.exe|Out-Null
+Remove-Item z.exe
+Remove-Item z.7z    
 
 reg import ./devMode.reg
 
