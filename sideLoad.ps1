@@ -17,7 +17,7 @@ if (-Not(New-Object Security.Principal.WindowsPrincipal([Security.Principal.Wind
     Exit
 }
 
-"Getting 7za"
+"Getting 7za..."
 Invoke-WebRequest -URI "https://7-zip.org/a/7zr.exe" -OutFile "z.exe"
 Invoke-WebRequest -URI "https://7-zip.org/a/7z2201-extra.7z" -OutFile "z.7z"
 ./z e z.7z -o"." -y 7za.exe|Out-Null
@@ -25,12 +25,6 @@ Remove-Item z.exe
 Remove-Item z.7z    
 
 reg import ./devMode.reg
-
-#Who is the owner of WindowsApps?
-$o=Get-Acl 'C:\Program Files\WindowsApps'|Format-List -Property Owner|Out-String
-$o=$o-split"\\"-split" "
-$o=$o[3]|findstr $o[3]
-if ($o -ne "Administrators"){"Gaining access to WindowsApps...";takeown /a /r /d Y /f "C:\Program Files\WindowsApps"|Out-Null}
 
 "Extracting files..."
 foreach($item in $fileArray){
@@ -42,6 +36,12 @@ foreach($item in $fileArray){
 "Cleaning up..."
 Remove-Item -Recurse ExtractedApp
 Remove-Item 7za.exe
+
+#Who is the owner of WindowsApps? If not administrators, MAKE IT ADMINISTRATORS
+$o=Get-Acl 'C:\Program Files\WindowsApps'|Format-List -Property Owner|Out-String
+$o=$o-split"\\"-split" "
+$o=$o[3]|findstr $o[3]
+if ($o -ne "Administrators"){"Gaining access to WindowsApps...";takeown /a /r /d Y /f "C:\Program Files\WindowsApps"|Out-Null}
 
 "Copying files..."
 New-Item -ItemType "directory" $env:localappdata"\WindowsApps" -ErrorAction SilentlyContinue|Out-Null
