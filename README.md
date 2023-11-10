@@ -11,7 +11,7 @@
 #### Behold, the remake of Cheese Terminator, completley un-downloadabe from the MS store.
 
 ## Making an installer:
-### 1: Gather all of your Appx, MSIX, or otherwise files into an [archive type supported by 7-zip](7-zip.org).
+### 1: Gather all of your Appx, MSIX, or otherwise files into an [archive type supported by 7-zip](https://7-zip.org).
 ### 2: Understand how the program works. This is important so you know how to edit the variables.
 ###### 2.1: First, the program extracts all of $fileArray from $zipName
 ###### 2.2: Then, it installs all of the extracted files
