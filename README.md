@@ -22,6 +22,6 @@
 <img src="https://user-images.githubusercontent.com/51035517/231390975-aadae227-7d7c-4e99-9db9-cda942910641.png" width="512">
 
 ## But where can I get Appx files?
-### You can get the application and it's dependencies from [here](store.rg-adguard.net).
+### You can get the application and it's dependencies from [here](https://store.rg-adguard.net).
 ### You can get the URLs that you need from the [Microsoft Store](https://apps.microsoft.com/store/apps).
 ###### PS: You don't need any .BlockMap files.
